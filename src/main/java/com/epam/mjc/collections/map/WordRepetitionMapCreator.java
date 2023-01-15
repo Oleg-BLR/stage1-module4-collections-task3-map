@@ -7,77 +7,67 @@ public class WordRepetitionMapCreator {
 
     public static void main(String[] args) {
 
-//        String sent = "Fffg sss ff SSS hhhhhh sSs ddd ddd";
-        String sentence = "Java java";
-//        String sentence = "Java map can store pairs of keys and values";
-        String sentence2 = "sentence in loWER caSE SENTENCE IN UPper CAse";
+//        String sentence = "";
+//        String sentence = "Java Map can store pairs of keys and values.";
+        String sentence = "hello word in lOwEr cAsE, HELLO WORD in UpPeR CaSe.";
         WordRepetitionMapCreator wordRepetitionMapCreator = new WordRepetitionMapCreator();
-        wordRepetitionMapCreator.createWordRepetitionMap(sentence2);
-//        System.out.println("aaraylist");
-//        wordRepetitionMapCreator.createWordRepetitionMap02(sentence2);
+        wordRepetitionMapCreator.createWordRepetitionMap(sentence);
+        wordRepetitionMapCreator.createWordRepetitionMap02(sentence);
+        wordRepetitionMapCreator.createWordRepetitionMapAsl(sentence);
     }
 
 
     public Map<String, Integer> createWordRepetitionMap(String sentence) {
-        Map<String, Integer> wordRepetitionMap = new TreeMap<>();
-//        wordRepetitionMap.put("sss", 5);
-//        String[] arrayOfStringElements = sentence.split(" ");
-        String[] arrayOfStringElements = sentence.split(" ");
-        List<String> myList = new ArrayList<String>(Arrays.asList(sentence.split(" ")));
+        Map<String, Integer> wordRepetitionMap = new HashMap<>();
+        String[] arrayOfStringElements = sentence.split("\\,\\s|\\s|\\.");
         System.out.println(Arrays.toString(arrayOfStringElements));
-        System.out.println(myList);
 
-//        for ()
-
-        for (int i = 0; i < arrayOfStringElements.length; i++) {
-//            if (!(wordRepetitionMap.containsKey(arrayOfStringElements[i].toLowerCase()))) {
-            if (!(wordRepetitionMap.containsKey((arrayOfStringElements[i]).toLowerCase()))) {
-                int countForValue = 1;
-                String tempElement = arrayOfStringElements[i].toLowerCase();
-//                wordRepetitionMap.put((arrayOfStringElements[i]).toLowerCase(), countForValue);
-                wordRepetitionMap.put(tempElement, countForValue);
-                for (int j = i + 1; j < arrayOfStringElements.length; j++) {
-
-
-                    if (arrayOfStringElements[i].equalsIgnoreCase(arrayOfStringElements[j])) {
-                        countForValue++;
-                    }
-                    wordRepetitionMap.put(tempElement, countForValue);
-//                    countForValue++;
+        if (!("".equals(sentence))) {
+            for (int i = 0; i < arrayOfStringElements.length; i++) {
+                if (!(wordRepetitionMap.containsKey((arrayOfStringElements[i]).toLowerCase()))) {
+                    wordRepetitionMap.put(arrayOfStringElements[i].toLowerCase(), 1);
+                } else {
+                    wordRepetitionMap.put(arrayOfStringElements[i].toLowerCase(), wordRepetitionMap.get(arrayOfStringElements[i].toLowerCase()) + 1);
                 }
             }
+            System.out.println(wordRepetitionMap);
 
-        }
-        System.out.println(wordRepetitionMap);
+            return wordRepetitionMap;
 
+        } else
+            System.out.println(wordRepetitionMap);
         return wordRepetitionMap;
     }
 
     public Map<String, Integer> createWordRepetitionMap02(String sentence) {
+
         Map<String, Integer> wordRepetitionMap = new HashMap<>();
-//        wordRepetitionMap.put("sss", 5);
-//        String[] arrayOfStringElements = sentence.split(" ");
-        List<String> myList = new ArrayList<String>(Arrays.asList(sentence.split(" ")));
+        List<String> myList = new ArrayList<>(Arrays.asList(sentence.split("\\,\\s|\\s|\\.")));
         System.out.println(myList);
-
-//        for ()
-
-        for (int i = 0; i < myList.size(); i++) {
-//            if (!(wordRepetitionMap.containsKey(arrayOfStringElements[i].toLowerCase()))) {
-            if (!(wordRepetitionMap.containsKey((myList.get(i)).toLowerCase()))) {
-                int countForValue = 1;
-                wordRepetitionMap.put((myList.get(i)).toLowerCase(), countForValue);
-                for (int j = i + 1; j < myList.size(); j++) {
-
-
-                    if (myList.get(i).equalsIgnoreCase(myList.get(j))) {
-                        countForValue++;
-                    }
-                    wordRepetitionMap.put((myList.get(i)).toLowerCase(), countForValue);
-//                    countForValue++;
+        if (!("".equals(sentence))) {
+            for (int i = 0; i < myList.size(); i++) {
+                if (!(wordRepetitionMap.containsKey((myList.get(i)).toLowerCase()))) {
+                    wordRepetitionMap.put((myList.get(i)).toLowerCase(), 1);
+                } else {
+                    wordRepetitionMap.put((myList.get(i)).toLowerCase(), wordRepetitionMap.get(myList.get(i).toLowerCase()) + 1);
                 }
             }
+            System.out.println(wordRepetitionMap);
 
+            return wordRepetitionMap;
+        } else {
+            System.out.println(wordRepetitionMap);
+            return wordRepetitionMap;
+        }
+    }
+
+    public Map<String, Integer> createWordRepetitionMapAsl(String sentence) {
+        Map<String, Integer> wordRepetitionMap = new HashMap<>();
+        StringTokenizer s = new StringTokenizer(sentence, " .,");
+//        System.out.println(Arrays.toString());
+        while (s.hasMoreTokens()) {
+            String letter = s.nextToken().toLowerCase();
+            wordRepetitionMap.put(letter, wordRepetitionMap.getOrDefault(letter, 0) + 1);
         }
         System.out.println(wordRepetitionMap);
 
