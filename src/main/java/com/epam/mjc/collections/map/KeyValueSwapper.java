@@ -37,15 +37,7 @@ public class KeyValueSwapper {
                 }
                 swapedMap.put(tempValue, minKey);
             }
-//        valueStringList.forEach(String );
-
-//        for (Integer key : sourceMap.keySet()) {
-//            sourceMap.get(key)
-//        }
-//            return swapedMap;
         }
-        System.out.println(sourceMap);
-        System.out.println(keyIntegerList);
         System.out.println(swapedMap);
         return swapedMap;
     }
