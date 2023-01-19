@@ -17,15 +17,27 @@ public class FunctionValueFinder {
     }
 
     public boolean isFunctionValuePresent(List<Integer> sourceList, int requiredValue) {
+
         Map<Integer, Integer> functionMap = calculateFunctionMap(sourceList);
         int countRequiredValue = 0;
+
         for (Integer v : functionMap.values()) {
-            if (v == requiredValue){
+            if (v == requiredValue) {
                 countRequiredValue++;
             }
         }
-        if (countRequiredValue > 0) return true;
-        return false;
+
+        return countRequiredValue > 0 ? true : false;
+
+//        Map<Integer, Integer> functionMap = calculateFunctionMap(sourceList);
+//        int countRequiredValue = 0;
+//        for (Integer v : functionMap.values()) {
+//            if (v == requiredValue){
+//                countRequiredValue++;
+//            }
+//        }
+//        if (countRequiredValue > 0) return true;
+//        return false;
     }
 
     private Map<Integer, Integer> calculateFunctionMap(List<Integer> sourceList) {
